@@ -29,17 +29,23 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int cupOfCoffees = 4;
+        int quantity = 4;
         int price = 5;
+        int paperCupPrice = 2;
 
-        display(cupOfCoffees);
-        displayPrice(cupOfCoffees * price);
+        displayQuantity(quantity);
+        displayPrice(quantity * price + quantity * paperCupPrice);
     }
 
-    /**
-     * This method displays the given quantity value on the screen.
-     */
-    private void display(int number) {
+    public void increment(View view) {
+        displayQuantity(3);
+    }
+
+    public void decrement(View view) {
+        displayQuantity(1);
+    }
+
+    private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText(String.valueOf(number));
     }

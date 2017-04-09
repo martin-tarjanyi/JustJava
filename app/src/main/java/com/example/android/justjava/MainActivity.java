@@ -18,6 +18,7 @@ import java.util.Locale;
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
+    private int quantity = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,25 +30,26 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int quantity = 4;
         int price = 5;
         int paperCupPrice = 2;
 
-        displayQuantity(quantity);
-        displayPrice(quantity * price + quantity * paperCupPrice);
+        displayQuantity();
+        displayPrice(quantity * (price + paperCupPrice));
     }
 
     public void increment(View view) {
-        displayQuantity(3);
+        quantity = Math.min(10, ++quantity);
+        displayQuantity();
     }
 
     public void decrement(View view) {
-        displayQuantity(1);
+        quantity = Math.max(0, --quantity);
+        displayQuantity();
     }
 
-    private void displayQuantity(int number) {
+    private void displayQuantity() {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quantityTextView.setText(String.valueOf(number));
+        quantityTextView.setText(String.valueOf(quantity));
     }
 
     private void displayPrice(int number) {
